@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Building the Docker image
-                    dockerImage = docker.build("helloworld-app:${env.BUILD_ID}")
+                    dockerImage = docker.build("authService-app:${env.BUILD_ID}")
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     // Tagging the image before pushing
-                    sh "docker tag helloworld-app:${env.BUILD_ID} karimelhou/mydocker:${env.BUILD_ID}"
+                    sh "docker tag authService-app:${env.BUILD_ID} karimelhou/mydocker:${env.BUILD_ID}"
                     // Pushing the image to Docker Hub
                     sh "docker push karimelhou/mydocker:${env.BUILD_ID}"
                 }
@@ -52,18 +52,18 @@ pipeline {
           //  steps {
             //    script {
               //      echo "BUILD_ID: ${env.BUILD_ID}"
-                //    sh "docker run -d -p 8081:8081 helloworld-app:${env.BUILD_ID}"
+                //    sh "docker run -d -p 8081:8081 authService-app:${env.BUILD_ID}"
                 //}
             //}
         //}
-        stage('Trigger Update Job') {
-            steps {
-                script {
+       // stage('Trigger Update Job') {
+         //   steps {
+           //     script {
                     // Triggering another Jenkins job with the current BUILD_ID
-                    build job: 'updatepush', parameters: [string(name: 'IMAGE_TAG', value: "${env.BUILD_ID}")]
-                }
-            }
-        }
+             //       build job: 'updatepush', parameters: [string(name: 'IMAGE_TAG', value: "${env.BUILD_ID}")]
+              //  }
+          //  }
+      //  }
     }
 
     post {
