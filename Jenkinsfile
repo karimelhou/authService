@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Building the Docker image
-                    dockerImage = docker.build("authService-app:${env.BUILD_ID}")
+                    dockerImage = docker.build("authservice-app:${env.BUILD_ID}")
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     // Tagging the image before pushing
-                    sh "docker tag authService-app:${env.BUILD_ID} karimelhou/mydocker:${env.BUILD_ID}"
+                    sh "docker tag authservice-app:${env.BUILD_ID} karimelhou/mydocker:${env.BUILD_ID}"
                     // Pushing the image to Docker Hub
                     sh "docker push karimelhou/mydocker:${env.BUILD_ID}"
                 }
