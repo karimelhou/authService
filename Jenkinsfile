@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     // Tagging the image before pushing
-                    sh "docker tag authservice-app:${env.BUILD_ID} karimelhou/mydocker:${env.BUILD_ID}"
+                    sh "docker tag authservice-app:${env.BUILD_ID} karimelhou/authservice:${env.BUILD_ID}"
                     // Pushing the image to Docker Hub
                     sh "docker push karimelhou/mydocker:${env.BUILD_ID}"
                 }
