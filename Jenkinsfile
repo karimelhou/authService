@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     echo "BUILD_ID: ${env.BUILD_ID}"
-                    sh "docker run -d -p 8081:8081 authService-app:${env.BUILD_ID}"
+                    sh "docker run -d -p 8082:8082 authservice-app:${env.BUILD_ID}"
                 }
             }
         }
